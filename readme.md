@@ -4,6 +4,16 @@ me start by using Python, just to try a sample architecture on a familiar lingui
 
 This Started with the sample chat app from : https://www.geeksforgeeks.org/simple-chat-room-using-python/
 
+### Usage
+   NOTE: Only tested on Linux 18.04 64bit, client and server on the same host, Python 2.7.15
+  * checkout the repo
+  * nagigate to root of repo
+  * run server on one terminal as `python server.py <address> <port>`
+  * run client on another terminal as `python client.py <address> <port>`. address and port and server's address and port
+  * Type msgs on the client terminal
+  * You can connect multiple clients
+
+
 A couple of TODOs
 -------------------
 * TODO: Why does server hangs where there are still remote clients connected!!! ANS: blocking recv, and closing threads after
