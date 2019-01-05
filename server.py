@@ -2,6 +2,8 @@
 Runs the server thread
 """
 
+from __future__ import absolute_import
+
 import sys
 
 from lib.server.server import Server
@@ -17,4 +19,4 @@ if __name__ == '__main__':
         print("Correct usage: Script, IP address, Port number")
         exit()
 
-    server(sys.argv[1], sys.argv[2])
+    server(sys.argv[1], int(sys.argv[2]))  # TODO: should check if argv[2] is digit

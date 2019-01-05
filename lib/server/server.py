@@ -7,11 +7,8 @@ Further cleanup would need to be done to support real clients on different machi
 import six
 import select
 import socket
-import sys
 import time
-from collections import defaultdict
 from multiprocessing import Event, Queue
-from threading import Thread
 
 from lib.server.client import ClientThread
 
@@ -38,7 +35,7 @@ class Server(object):
     """
     def __init__(self, ip_address, port):
         self.ip_address = ip_address
-        self.port  = port
+        self.port = port
         self.shutting_down = Event()
         self.msg_queue = Queue()
         self.addr_to_conn_struct_map = {}
@@ -51,8 +48,7 @@ class Server(object):
         self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server.bind((self.ip_address, self.port))
         self.server.listen(100)
-        self.server.setsockopt  
-    
+
     def start_new_thread(self, conn, addr):
         """
         Creates a new client thread instance, and adds it to the map of known clients
@@ -65,7 +61,7 @@ class Server(object):
         """
         Sends  message to all clients/connections, except for the source connection/client
         """
-        for  addr in set(six.iterkeys(self.addr_to_conn_struct_map)) - {addr}:
+        for addr in set(six.iterkeys(self.addr_to_conn_struct_map)) - {addr}:
             try:
                 self.addr_to_conn_struct_map[addr].conn.send(message)
             except:
@@ -92,7 +88,7 @@ class Server(object):
         while not self.msg_queue.empty():
             addr, msg = self.msg_queue.get()
             if msg:
-                print msg
+                print(msg)
                 self.broadcast(addr, msg)
             else:
                 self.clean(addr)
@@ -103,7 +99,7 @@ class Server(object):
         Service inbox queue
         """
 
-        print "Running server on address: {}, port: {}".format(self.ip_address, self.port)
+        print("Running server on address: {}, port: {}".format(self.ip_address, self.port))
         self.setup_for_run()
 
         try:
@@ -115,7 +111,7 @@ class Server(object):
                 if self.server in readable:
                     conn, addr = self.server.accept()
                     # log connnection confirmation message
-                    print addr[0] + " connected"
+                    print(addr[0] + " connected")
                     # start a new client thread with the new conn and address, and create  new struct
                     self.addr_to_conn_struct_map[addr] = ConnStruct(conn, self.start_new_thread(conn, addr))
                 # process msgs in queue
@@ -125,11 +121,12 @@ class Server(object):
             pass
         finally:
             self.shutting_down.set()
-            # wait for client threads to get the message and clean their sht
-            print "Exiting Server Process, waiting for clients cleanup"
-
+            # clean up all known client connections and threads
             for addr in self.addr_to_conn_struct_map:
                 self.clean(addr, keep=True)
+            print("Exiting Server Process, waiting for clients cleanup")
+            # wait for client threads to get the message and clean their sht
             time.sleep(1)
-            self.server.close
-            print "Done!"
+            # close server connection
+            self.server.close()
+            print("Done!")

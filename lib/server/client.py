@@ -63,7 +63,7 @@ class ClientThread(Thread):
                             sent_bye = True  # need to have this flag since this can run for sometime before the thread stops
                             
                         self.msg_queue.put((self.addr, msg_to_send))
-                except:
+                except:  # Of cause this is not a good catch, and lint should complain
                     # Any exception... just continue, until some set count, then exit?
                     continue
         except KeyboardInterrupt:

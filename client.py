@@ -15,4 +15,4 @@ if __name__ == "__main__":
         print("Correct usage: Script, IP address, Port number")
         exit()
 
-    client(sys.argv[1], int(sys.argv[2]))
+    client(sys.argv[1], int(sys.argv[2]))  # TODO: should check if argv[2] is digit

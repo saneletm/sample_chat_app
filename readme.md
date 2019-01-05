@@ -6,27 +6,29 @@ This Started with the sample chat app from : https://www.geeksforgeeks.org/simpl
 
 A couple of TODOs
 -------------------
-* TODO: why does server hangs where there are still remote clients connected!!! ANS: blocking recv, and closing threads after
-* TODO: add tests!!! and put on github
+* TODO: Why does server hangs where there are still remote clients connected!!! ANS: blocking recv, and closing threads after
+* TODO: Add tests!!! and put on github
+* TODO: Use python logging instead of printing
+* TODO: Msgs on the remote client are printing new line char
 * TODO: Why green threads would be better here???
     * Gevent greenlets!
-       * pros:
+       * Pros:
             * naturally not blocking
-            * Very light on resources.. watch htop
-       * cons:
-            * In python 2, need to use gevent
+            * nery light on resources.. watch htop
+       * Cons:
+            * in python 2, need to use gevent
                 * monkey patches all sockets and stuff and need a lot of caution -- can be hard to debug
-                * Not std lib in python
-                * Need to set a good timeout/sleep times for cooperative processing
-                * On greenlet blocks.... they are all blocked
-                * Its not parallelism, its concurrent! cooperative processing
+                * not std lib in python
+                * need to set a good timeout/sleep times for cooperative processing
+                * on greenlet blocks.... they are all blocked
+                * its not parallelism, its concurrent! cooperative processing
     * Twisted (Warning: I made this up, I am really not familiar with twisted)
-        * pros:
+        * Pros:
             * light on resources
             * naturally not blocking
             * lots of functionality
-        * cons:
-            * Behemoth -- huge
+        * Cons:
+            * behemoth -- huge
             * external
             * huge learning curve
             * callback night bear
@@ -34,5 +36,6 @@ A couple of TODOs
 * TODO: Have a broker for connections, so that if server goes down, or down before client conn, the clients have a waiting room
       potentially with a timeout.... after such and such a time, tell waiting client `hardy`
 * TODO: Support remote clients
-* TODO: improve performance, there is still a significant delay between sending messages and delivery
-* TODO: a better command prompt
+* TODO: Improve performance, there is still a significant delay between sending messages and delivery
+* TODO: Get a better command prompt for clients
+
