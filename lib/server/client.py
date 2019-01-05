@@ -4,13 +4,8 @@ This is only safe to use on the same machine (as in run both the server and clie
 Further cleanup would need to be done to support real clients on different machines (as of Jan 4 2019)
 """
 
-import six
 import select
-import socket
-import sys
-import time
-from collections import defaultdict
-from multiprocessing import Event, Queue
+from multiprocessing import Event
 from threading import Thread
 
 
@@ -75,5 +70,5 @@ class ClientThread(Thread):
             pass
         finally:
             # When all done, close socket and log exit
-            # self.conn.close()  # TODO: verifies server clean closes all socket conn objects
-            print "{} client thread exited ".format(self.addr)
+            # self.conn.close()  # TODO: verify server clean closes all socket conn objects
+            print("{} client thread exited ".format(self.addr))

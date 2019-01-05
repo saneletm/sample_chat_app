@@ -13,7 +13,7 @@ from collections import defaultdict
 from multiprocessing import Event, Queue
 from threading import Thread
 
-from server_libs.client import ClientThread
+from lib.server.client import ClientThread
 
 
 class ConnStruct(object):
@@ -133,4 +133,3 @@ class Server(object):
             time.sleep(1)
             self.server.close
             print "Done!"
-
