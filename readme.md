@@ -1,7 +1,6 @@
 ## README
--------------
-BORED, learning GoLang, got a suggestion to implement a chat app using GO. I was like... hey ... let 
-me start with Python, just to try a sample architecture on a familar linguisto!
+Learning GoLang, got a suggestion to implement a chat app using GO. I was like... hey ... let 
+me start by using Python, just to try a sample architecture on a familar linguisto!
 
 This Started with the sample chat app from : https://www.geeksforgeeks.org/simple-chat-room-using-python/
 
